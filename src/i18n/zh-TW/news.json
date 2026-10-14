@@ -100,8 +100,8 @@
     "sourceHash": "524022d62a6e34bbbc189419752844e27e0cfa2b88cffb0107e302d80c3d6265"
   },
   "omacom-foundation-launches-with-8-million": {
-    "title": "Omacom Foundation 成立，籌得 2,170 萬美元",
-    "sourceHash": "d9e32fe69c8ec12634c40c20e6ffe4668a63ea365a175af61fa78bc0acd5bcf7"
+    "title": "Omacom Foundation 成立，籌得 2,350 萬美元",
+    "sourceHash": "481a227c030eca3dfcb46c4c1daf18de9bfaff7151f47edf45ddf306275294e9"
   },
   "omacom-foundation-funding-hits-10m": {
     "title": "Omacom Foundation 資金達到 1,000 萬美元",
@@ -126,5 +126,17 @@
   "omacom-foundation-hires-emir-beganovic": {
     "title": "Omacom Foundation 聘請 Emir Beganović 擔任基礎設施負責人",
     "sourceHash": "50b9e588ad6c9188d1b9c8bf4f8a3de18ff1be21890f8732904c6b6e0dce0687"
+  },
+  "namespace-joins-as-a-distinguished-corporate-patron": {
+    "title": "Namespace 加入成為傑出企業贊助人",
+    "sourceHash": "e4e14b2fc8e25a6b929f62e97e61ecce7e0754f3dca5933046b4c7405b0c27ab"
+  },
+  "spacexai-joins-as-founding-corporate-patron": {
+    "title": "SpaceXAI 以價值 150 萬美元的 Grok token 加入成為創始企業贊助人",
+    "sourceHash": "d32d3f956ed8e2a1b979db10cf7d7fe2b4c0ab7800e494f6a517270ae00a9ac7"
+  },
+  "omarchy-launches-bug-bounty-program-on-hackerone": {
+    "title": "Omarchy 在 HackerOne 推出 10 萬美元漏洞賞金計畫",
+    "sourceHash": "09e834cfd5c67b5c1b5434c4921b506f7fc73e736d7fdf37b575ed1d1483dc2c"
   }
 }
