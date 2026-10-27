@@ -29,17 +29,52 @@ const drafts = new Set(
   codes.filter((code) => locales[code].draft).map(workerName),
 )
 const deployed = body.result.map((worker) => worker.id)
+// Editions taken out of the registry whose Workers may still be deployed.
+// Delete each Worker (and its custom domain) in Cloudflare, then its name here.
+const retired = new Set([
+  'omarchy-en-au',
+  'omarchy-en-nz',
+  'omarchy-en-ng',
+  'omarchy-en-sg',
+  'omarchy-en-us',
+  'omarchy-en-zw',
+])
+const lingering = deployed.filter((name) => retired.has(name))
+if (lingering.length)
+  console.log(
+    `Retired editions still deployed, delete them in Cloudflare: ${lingering.join(', ')}.`,
+  )
 const previews = deployed.filter((name) => drafts.has(name))
 if (previews.length)
   console.log(
     `Draft previews deployed, not updated until published: ${previews.join(', ')}.`,
   )
-// An edition is named for a language code that check-translations.mjs
-// accepts, like omarchy-da or omarchy-en-au; other omarchy-* Workers,
-// like omarchy-ping, are infrastructure.
-const edition = /^omarchy-[a-z]{2,3}(-[a-z0-9]+)*$/
+// An edition is named for a canonical language code, like omarchy-da or
+// omarchy-en-au; other omarchy-* Workers, like omarchy-ping, are
+// infrastructure. Canonical, because omarchy-geo reads as Georgian's old
+// three-letter code, which Intl rewrites to ka.
+const languages = new Intl.DisplayNames(['en'], {
+  type: 'language',
+  fallback: 'none',
+})
+const isEdition = (name) => {
+  const code = name.match(/^omarchy-([a-z]{2,3}(-[a-z0-9]+)*)$/)?.[1]
+  if (!code) return false
+  try {
+    return (
+      Boolean(languages.of(code)) &&
+      Intl.getCanonicalLocales(code)[0].toLowerCase() === code
+    )
+  } catch {
+    return false
+  }
+}
 const unmanaged = deployed.filter(
-  (name) => edition.test(name) && !registered.has(name) && !drafts.has(name),
+  (name) =>
+    isEdition(name) &&
+    !registered.has(name) &&
+    !drafts.has(name) &&
+    !retired.has(name),
 )
 if (unmanaged.length) {
   throw new Error(

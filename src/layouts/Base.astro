@@ -124,8 +124,10 @@ const fontPreloads = [...new Set([...own, geistLatin, monoLatin])]
       import { readTheme } from '@/lib/theme'
       import { watchOutbound } from '@/lib/outbound'
       import { watchBrandDownloads } from '@/lib/brand-downloads'
+      import { watchManualTocScroll } from '@/lib/manual-toc-scroll'
 
       watchBrandDownloads()
+      watchManualTocScroll()
       watchOutbound()
       // Navigation should paint live text, not briefly rasterize it through
       // the snapshot animation used for palette changes.
